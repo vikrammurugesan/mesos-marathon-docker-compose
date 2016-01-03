@@ -1,4 +1,4 @@
-mesos-zk:
+zookeeper:
   image: bobrik/zookeeper
   ports:
    - 2181:2181
@@ -6,7 +6,7 @@ mesos-zk:
     ZK_CONFIG: tickTime=2000,initLimit=10,syncLimit=5,maxClientCnxns=128,forceSync=no,clientPort=2181
     ZK_ID: 1
 
-mesos-master:
+master:
   image: mesosphere/mesos-master:0.26.0-0.2.145.ubuntu1404
   net: host
   environment:
@@ -15,10 +15,9 @@ mesos-master:
     MESOS_CLUSTER: docker-compose
     MESOS_WORK_DIR: /var/lib/mesos
 
-mesos-slave-one:
+slave:
   image: mesosphere/mesos-slave:0.26.0-0.2.145.ubuntu1404
   net: host
-  pid: host
   environment:
     MESOS_MASTER: zk://127.0.0.1:2181/mesos
     MESOS_CONTAINERIZERS: docker,mesos
@@ -29,7 +28,7 @@ mesos-slave-one:
     - /usr/local/bin/docker:/usr/bin/docker
     - /var/run/docker.sock:/var/run/docker.sock
 
-mesos-marathon:
+marathon:
   image: mesosphere/marathon:v0.14.0-RC1
   net: host
   environment:
