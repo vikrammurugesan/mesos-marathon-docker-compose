@@ -26,6 +26,11 @@ Docker Compose based implementation of single node Mesos cluster with Marathon
 ./clean-bounce-cluster.sh
 ```
 
+## How to remove all containers that are running on my machine?
+```bash
+./clean-cluster.sh
+```
+
 ## How to find where your cluster is running?
 ```bash
 # if you are a boot2docker user
